@@ -5,7 +5,7 @@ Neste Case de análise de dados financeiros utilizando a ferramenta Spark. O obj
 ## Serão abordados os seguintes tópicos:
 
 
-* Coleta e entendimento dos dados * 
+* Coleta e entendimento dos dados 
 * Pré-processamento com Spark
 * Análise Exploratória de Dados
 * Modelagem de Machine Learning
@@ -23,13 +23,13 @@ Os dados contêm informações como data e hora da transação, valor, descriç�
 É importante conhecer e entender bem os dados que estão sendo analisados, através de uma amostragem e verificação de cada coluna:
 
 
-Data: data e hora da transação
-Valor: valor monetário da transação
-Descrição: descrição da transação
-Categoria: tipo/categoria (transferência, pagamento, etc)
-Banco Origem: banco de origem do valor transacionado
-Banco Destino: banco de destino do valor transacionado
-Fraude: indica se a transação é fraudulenta (Sim ou Não)
+* __Data:__ data e hora da transação
+* __Valor:__ valor monetário da transação
+* __Descrição:__ descrição da transação
+* __Categoria:__ tipo/categoria (transferência, pagamento, etc)
+* __Banco Origem:__ banco de origem do valor transacionado
+* __Banco Destino:__ banco de destino do valor transacionado
+* __Fraude:__ indica se a transação é fraudulenta (Sim ou Não)
 
 Com esse entendimento inicial já é possível começar a pensar em algumas análises, como: padrões de transações ao longo do tempo, principais categorias, bancos mais utilizados, distribuição dos valores, entre outras.
 
@@ -38,17 +38,17 @@ Com esse entendimento inicial já é possível começar a pensar em algumas aná
 Com os dados coletados, a próxima etapa é o pré-processamento utilizando a ferramenta Spark. Nesta etapa são realizadas tarefas como:
 
 
-Limpeza de dados: tratamento de valores nulos, dados duplicados, conversão de tipos de dados, etc.
-Transformação de dados: criação de novas colunas analíticas, mudança de formatos, extração de novos atributos, etc.
-Análise exploratória inicial: entendimento das distribuições, estatísticas descritivas, visualizações, etc.
+* Limpeza de dados: tratamento de valores nulos, dados duplicados, conversão de tipos de dados, etc.
+*Transformação de dados: criação de novas colunas analíticas, mudança de formatos, extração de novos atributos, etc.
+* Análise exploratória inicial: entendimento das distribuições, estatísticas descritivas, visualizações, etc.
 
 Alguns insights obtidos nesta etapa para os dados do nosso cliente Jonathan:
 
 
-Possui um alto volume de transações: mais de 2000 transações em 2 anos
-Valores de transações variam bastante, de R$ 2 a R$ 200 mil
-Existem transações fraudulentas (15% do total)
-A maioria das transações são transferências bancárias
+* Possui um alto volume de transações: mais de 2000 transações em 2 anos
+* Valores de transações variam bastante, de R$ 2 a R$ 200 mil
+* Existem transações fraudulentas (15% do total)
+* A maioria das transações são transferências bancárias
 
 Essas primeiras análises já permitem entender um pouco melhor o perfil das transações do cliente e identificar algumas oportunidades de melhoria, como investigar as transações fraudulentas.
 
@@ -56,15 +56,15 @@ Essas primeiras análises já permitem entender um pouco melhor o perfil das tra
 
 Após o pré-processamento, podemos mergulhar em uma análise mais profunda através da Análise Exploratória de Dados, buscando entender melhor os dados e extrair insights. Algumas análises realizadas:
 
-Distribuição temporal das transações: há picos de até 50 transações por mês, indicando um alto volume de transações mensais.
+__Distribuição temporal das transações:__ há picos de até 50 transações por mês, indicando um alto volume de transações mensais.
 
-Principais categorias: Transferências bancárias representam 75% das transações, indicando que essa é a categoria mais comum.
+__Principais categorias:__ Transferências bancárias representam 75% das transações, indicando que essa é a categoria mais comum.
 
-Valores das transações: 50% das transações são abaixo de R$ 5 mil, 25% até R$ 19 mil. Valores acima de R$ 20 mil são outliers e pouco comuns.
+__Valores das transações:__ 50% das transações são abaixo de R$ 5 mil, 25% até R$ 19 mil. Valores acima de R$ 20 mil são outliers e pouco comuns.
 
-Bancos mais frequentes: os dois bancos mais utilizados são Banco do Brasil e BTG. Porém o volume transacionado com o BTG é menor.
+__Bancos mais frequentes:__ os dois bancos mais utilizados são Banco do Brasil e BTG. Porém o volume transacionado com o BTG é menor.
 
-Transações fraudulentas: correspondem a 15% do total de transações. Todas as tentativas de fraude identificadas são em valores acima de R$ 19,9 mil.
+__Transações fraudulentas:__ correspondem a 15% do total de transações. Todas as tentativas de fraude identificadas são em valores acima de R$ 19,9 mil.
 
 Esses insights já permitem tirar algumas conclusões sobre o comportamento do cliente e identificar padrões nas transações fraudulentas, por exemplo.
 
@@ -72,17 +72,17 @@ Esses insights já permitem tirar algumas conclusões sobre o comportamento do c
 
 Com o entendimento dos dados, podemos criar um modelo de machine learning para detectar transações fraudulentas e classificá-las automaticamente.
 
-A técnica escolhida foi uma Random Forest, um algoritmo de ensemble que combina o resultado de várias árvores de decisão.
+A técnica escolhida foi uma __Random Forest__, um algoritmo de ensemble que combina o resultado de várias árvores de decisão.
 
 As variáveis ou atributos utilizados para treinar o modelo foram:
 
 
-(-) Valor da transação
-(-) Banco de origem
-Banco de destino
-Categoria da transação
-Hora do dia
-Dia da semana
+* Valor da transação
+* Banco de origem
+* Banco de destino
+* Categoria da transação
+* Hora do dia
+* Dia da semana
 
 Após o treinamento, o modelo obteve uma acurácia de 95% na detecção de fraudes na base de validação. Isso significa que ele é capaz de identificar transações fraudulentas com confiabilidade para poder tomar decisões.
 
@@ -91,9 +91,9 @@ Após o treinamento, o modelo obteve uma acurácia de 95% na detecção de fraud
 Antes de aplicar o modelo é preciso avaliar se os resultados fazem sentido e se ele realmente responde às necessidades de negócio. Algumas verificações realizadas:
 
 
-O modelo identifica corretamente transações acima de R$ 20 mil como fraudulentas? Sim
-Ele consegue responder quais são os bancos e categorias mais utilizados? Sim
-A acurácia de 95% atende ao mínimo exigido? Sim
+* O modelo identifica corretamente transações acima de R$ 20 mil como fraudulentas? __Sim__
+* Ele consegue responder quais são os bancos e categorias mais utilizados? __Sim__
+* A acurácia de 95% atende ao mínimo exigido? __Sim__
 
 O modelo desenvolvido atende às expectativas e necessidades do negócio. Portanto, podemos prosseguir para a implantação e uso nas operações diárias.
 
@@ -104,13 +104,13 @@ Com o modelo validado, ele pode ser implantado para uso em produção, aplicando
 Algumas ações sugeridas com base nas análises:
 
 
-Diminuir o limite máximo de transferência do cliente para R$ 20 mil, já que este é o valor acima do qual as fraudes ocorrem.
+* Diminuir o limite máximo de transferência do cliente para R$ 20 mil, já que este é o valor acima do qual as fraudes ocorrem.
 
-Desenvolver um sistema que utilize o modelo treinado para detectar fraudes antes da transação ser efetivada, bloqueando tentativas suspeitas.
+* Desenvolver um sistema que utilize o modelo treinado para detectar fraudes antes da transação ser efetivada, bloqueando tentativas suspeitas.
 
-Sugerir ao cliente a utilização de uma conta jurídica, devido ao alto volume e valores de suas transações. Uma conta PJ possui taxas e funcionalidades mais adequadas.
+* Sugerir ao cliente a utilização de uma conta jurídica, devido ao alto volume e valores de suas transações. Uma conta PJ possui taxas e funcionalidades mais adequadas.
 
-Monitorar continuamente as métricas do modelo em produção.
+* Monitorar continuamente as métricas do modelo em produção.
 
 
 Dessa forma foi possível entregar um projeto de big data completo, desde a extração de insights à implantação de um modelo de machine learning, trazendo valor real para o negócio e melhor experiência para o cliente do banco.
